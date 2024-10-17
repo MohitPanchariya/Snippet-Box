@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"runtime/debug"
+	"time"
 )
 
 func (app *application) serverError(w http.ResponseWriter, err error) {
@@ -44,4 +45,11 @@ func (app *application) render(w http.ResponseWriter, status int, page string, d
 	// If the template executed successfully, the output produced by the template can be
 	// written to the resposne writer
 	buf.WriteTo(w)
+}
+
+// Returns an instance of templateData
+func (app *application) newTemplateData(r *http.Request) *templateData {
+	return &templateData{
+		CurrentYear: time.Now().Year(),
+	}
 }
