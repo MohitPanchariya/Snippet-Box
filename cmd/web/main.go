@@ -9,6 +9,7 @@ import (
 	"os"
 
 	"github.com/MohitPanchariya/Snippet-Box/internal/models"
+	"github.com/go-playground/form/v4"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -19,6 +20,7 @@ type application struct {
 	staticAssets  string // Path to static assests
 	snippetModel  *models.SnippetModel
 	templateCache map[string]*template.Template
+	formDecoder   *form.Decoder
 }
 
 func main() {
@@ -53,6 +55,7 @@ func main() {
 		staticAssets:  *static_dir,
 		snippetModel:  &models.SnippetModel{DB: db},
 		templateCache: templateCache,
+		formDecoder:   form.NewDecoder(),
 	}
 
 	srv := &http.Server{
