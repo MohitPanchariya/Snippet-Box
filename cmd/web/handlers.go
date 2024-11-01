@@ -123,6 +123,7 @@ func (app *application) userSignupPost(w http.ResponseWriter, r *http.Request) {
 		data.Form = form
 
 		app.render(w, http.StatusUnprocessableEntity, "signup.tmpl.html", data)
+		return
 	}
 
 	err = app.usersModel.Insert(form.Name, form.Email, form.Password)
