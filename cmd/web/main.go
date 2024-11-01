@@ -22,6 +22,7 @@ type application struct {
 	errorLog       *log.Logger
 	staticAssets   string // Path to static assests
 	snippetModel   *models.SnippetModel
+	usersModel     *models.UserModel
 	templateCache  map[string]*template.Template
 	formDecoder    *form.Decoder
 	sessionManager *scs.SessionManager
@@ -74,6 +75,7 @@ func main() {
 		errorLog:       errorLog,
 		staticAssets:   *static_dir,
 		snippetModel:   &models.SnippetModel{DB: db},
+		usersModel:     &models.UserModel{DB: db},
 		templateCache:  templateCache,
 		formDecoder:    form.NewDecoder(),
 		sessionManager: sessionManager,
