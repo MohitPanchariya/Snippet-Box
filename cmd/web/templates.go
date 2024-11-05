@@ -9,11 +9,12 @@ import (
 
 // structure to hold dynamic data passed to html templates
 type templateData struct {
-	CurrentYear int
-	Snippet     *models.Snippet
-	Snippets    []*models.Snippet
-	Flash       string
-	Form        any
+	CurrentYear     int
+	Snippet         *models.Snippet
+	Snippets        []*models.Snippet
+	Flash           string
+	IsAuthenticated bool
+	Form            any
 }
 
 // Cache templates at application start up
