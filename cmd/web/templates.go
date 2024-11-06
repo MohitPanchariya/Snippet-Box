@@ -15,6 +15,7 @@ type templateData struct {
 	Flash           string
 	IsAuthenticated bool
 	Form            any
+	CSRFToken       string
 }
 
 // Cache templates at application start up
