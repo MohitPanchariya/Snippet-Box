@@ -64,7 +64,7 @@ func Matches(value string, rx *regexp.Regexp) bool {
 }
 
 // Returns true if value is in the list of permitted values
-func PermittedInt(value int, permittedValues ...int) bool {
+func PermittedValue[T comparable](value T, permittedValues ...T) bool {
 	for i := range permittedValues {
 		if value == permittedValues[i] {
 			return true

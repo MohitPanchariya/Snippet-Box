@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 
+	"github.com/MohitPanchariya/Snippet-Box/ui"
 	"github.com/julienschmidt/httprouter"
 	"github.com/justinas/alice"
 )
@@ -10,12 +11,12 @@ import (
 func (app *application) routes() http.Handler {
 	router := httprouter.New()
 
-	fileServer := http.FileServer(http.Dir(app.staticAssets))
+	fileServer := http.FileServer(http.FS(ui.Files))
 	// Called when a page is not found/not registered with the router
 	router.NotFound = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		app.notFound(w)
 	})
-	router.Handler(http.MethodGet, "/static/*filepath", http.StripPrefix("/static", fileServer))
+	router.Handler(http.MethodGet, "/static/*filepath", fileServer)
 
 	dynamic := alice.New(app.sessionManager.LoadAndSave, noSurf, app.authenticate)
 	protected := dynamic.Append(app.requireAuthentication)
