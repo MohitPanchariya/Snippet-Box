@@ -4,6 +4,7 @@ import (
 	"html/template"
 	"io/fs"
 	"path/filepath"
+	"time"
 
 	"github.com/MohitPanchariya/Snippet-Box/internal/models"
 	"github.com/MohitPanchariya/Snippet-Box/ui"
@@ -47,4 +48,11 @@ func newTemplateCache() (map[string]*template.Template, error) {
 	}
 
 	return cache, nil
+}
+
+func humanDate(t time.Time) string {
+	if t.IsZero() {
+		return ""
+	}
+	return t.UTC().Format("02 Jan 2006 at 15:04")
 }
