@@ -8,12 +8,16 @@ import (
 	"net/http/cookiejar"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/MohitPanchariya/Snippet-Box/internal/models/mocks"
 )
 
 func newTestApplication(t *testing.T) *application {
 	return &application{
-		errorLog: log.New(io.Discard, "", 0),
-		infoLog:  log.New(io.Discard, "", 0),
+		errorLog:     log.New(io.Discard, "", 0),
+		infoLog:      log.New(io.Discard, "", 0),
+		snippetModel: &mocks.SnippetModel{},
+		usersModel:   &mocks.UserModel{},
 	}
 }
 

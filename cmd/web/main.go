@@ -21,8 +21,8 @@ type application struct {
 	infoLog        *log.Logger
 	errorLog       *log.Logger
 	staticAssets   string // Path to static assests
-	snippetModel   *models.SnippetModel
-	usersModel     *models.UserModel
+	snippetModel   models.SnippetModelInterface
+	usersModel     models.UserModelInterface
 	templateCache  map[string]*template.Template
 	formDecoder    *form.Decoder
 	sessionManager *scs.SessionManager
